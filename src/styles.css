@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: #0D1B2A;
+  color: white;
+}
+
+::selection {
+  background: #D96A0E;
+  color: white;
+}
