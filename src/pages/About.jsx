@@ -1,281 +1,161 @@
 import { motion } from 'framer-motion'
-import {
-  Eye,
-  Target,
-  Film,
-  Users,
-} from 'lucide-react'
+import { Eye, Target, Sparkles, ShieldCheck } from 'lucide-react'
+import aboutStory from '../assets/about_story.png'
 
 export default function About() {
-
   const values = [
     {
-      icon: Eye,
-      title: 'الرؤية',
-      desc: 'أن يصبح صالون دمشق السينمائي المنصة الثقافية السينمائية الأهم في سوريا.',
+      icon: Sparkles,
+      title: 'الأصالة الثقافية',
+      desc: 'الارتباط العضوي بالهوية والقصص المحلية، وربط الجيل الجديد بجذور الحكاية السورية وعمقها التاريخي.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'الاستقلالية الفنية',
+      desc: 'توفير مساحة حرة للتعبير والتجريب الفني بعيداً عن ضغوط الأسواق التجارية والإنتاج الربحي المكرر.',
     },
     {
       icon: Target,
-      title: 'الرسالة',
-      desc: 'خلق مساحة فنية مستقلة للحوار والتجربة السينمائية المعاصرة.',
-    },
-    {
-      icon: Users,
-      title: 'المجتمع',
-      desc: 'بناء جيل جديد من المهتمين بالفن السابع والنقد البصري.',
+      title: 'التميز البصري',
+      desc: 'تقديم تجارب عرض سينمائية استثنائية وعالية الجودة هندسياً وتقنياً بفضل أنظمة طاقة بديلة وصوتية متطورة.',
     },
   ]
 
   return (
-
-    <div className="overflow-hidden">
-
-      {/* HERO */}
-
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-
-        {/* BG */}
-
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-110"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
-
-        <div className="absolute inset-0 bg-black/75" />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-primary" />
-
-        {/* GLOW */}
-
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gold/10 blur-3xl rounded-full" />
-
-        {/* CONTENT */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 max-w-5xl mx-auto px-6 text-center"
-        >
-
-          <span className="text-gold font-black text-lg">
-            من نحن
-          </span>
-
-          <h1 className="text-6xl md:text-8xl font-black leading-tight mt-6">
-
-            مساحة مستقلة
-            <span className="block text-gold mt-3">
-              للسينما والحوار
-            </span>
-
-          </h1>
-
-          <p className="max-w-3xl mx-auto mt-10 text-xl text-gray-300 leading-[2.2]">
-
-            صالون دمشق السينمائي منصة ثقافية تسعى لإحياء السينما
-            البديلة وبناء مجتمع بصري معاصر داخل قلب دمشق.
-
-          </p>
-
-        </motion.div>
-
+    <div className="overflow-hidden bg-midnight">
+      
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center pt-24 overflow-hidden">
+        
+        {/* Glow */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-projector-orange/10 blur-[130px] rounded-full pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto px-6 text-center z-10 space-y-6">
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-projector-orange font-cairo font-bold text-sm tracking-wider uppercase"
+          >
+            حكايتنا وهويتنا
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-6xl font-black font-cairo leading-tight text-white"
+          >
+            عن صالون دمشق السينمائي
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-400 font-tajawal text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
+          >
+            "السينما كما يجب أن تُشاهد" — أكثر من مجرد شاشة عرض، نحن ملتقى فكري مستقل لإحياء التراث وبناء مجتمع نقدي واعٍ.
+          </motion.p>
+        </div>
       </section>
 
-      {/* STORY */}
-
-      <section className="py-32">
-
-        <div className="max-w-6xl mx-auto px-6">
-
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-
-            {/* TEXT */}
-
-            <div>
-
-              <span className="text-gold font-black">
-                قصة الصالون
+      {/* Story Narrative & Image */}
+      <section className="py-20 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Text story (7 columns) */}
+            <div className="lg:col-span-7 space-y-6 text-right order-2 lg:order-1">
+              <span className="text-projector-warm font-cairo font-bold text-sm tracking-wider">
+                من نحن
               </span>
-
-              <h2 className="text-5xl font-black leading-tight mt-6 mb-10">
-
-                حيث تبدأ الحكاية
-                <span className="block text-gold">
-                  بعد نهاية العرض
-                </span>
-
+              <h2 className="text-3xl md:text-4xl font-black font-cairo text-white leading-tight">
+                في قلب دمشق، وُلدت الفكرة
               </h2>
-
-              <div className="space-y-8 text-lg text-gray-300 leading-[2.2]">
-
-                <p>
-                  نؤمن أن السينما ليست مجرد شاشة عرض، بل تجربة
-                  فكرية وإنسانية قادرة على إعادة تشكيل الوعي البصري
-                  والثقافي.
-                </p>
-
-                <p>
-                  نسعى لخلق مساحة تجمع بين الجمهور وصنّاع الأفلام
-                  والنقاد ضمن بيئة فنية مستقلة تحتفي بالحوار والتجريب.
-                </p>
-
-                <p>
-                  من خلال الورش والعروض واللقاءات، نعمل على دعم
-                  المواهب المحلية وصناعة حراك سينمائي معاصر.
-                </p>
-
-              </div>
-
+              <p className="text-gray-300 font-tajawal text-base md:text-lg leading-[2] text-justify">
+                في قلب دمشق، حيث تتشابك عراقة التاريخ بالحكايا اليومية، وُلد "صالون دمشق السينمائي" ليكون أكثر من مجرد شاشة عرض. نحن مساحة ثقافية مستقلة وملتقى فكري يجمع صنّاع الأفلام، النقاد، وعشاق الفن السابع في تجربة بصرية مغايرة للمألوف.
+              </p>
+              <p className="text-gray-300 font-tajawal text-base md:text-lg leading-[2] text-justify">
+                انطلقنا من شغف إعادة إحياء طقوس السينما الكلاسيكية بروح عصرية، لنمنح الجمهور السوري نافذةً يرى من خلالها العالم، ومنصةً تعيد تقديم القصص المحلية والعالمية بعيون سينمائية احترافية وملهمة.
+              </p>
             </div>
 
-            {/* IMAGE */}
-
-            <div className="relative">
-
-              <div className="absolute -inset-4 bg-gold/10 blur-3xl rounded-[3rem]" />
-
-              <img
-                src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2070&auto=format&fit=crop"
-                className="relative rounded-[3rem] h-[700px] w-full object-cover"
-              />
-
+            {/* Cinematic image layout (5 columns) */}
+            <div className="lg:col-span-5 relative order-1 lg:order-2">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 aspect-square sm:aspect-[4/3] lg:aspect-square">
+                <img
+                  src={aboutStory}
+                  alt="Vintage cinema reels and projection beam"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-black/20" />
+              </div>
             </div>
 
           </div>
-
         </div>
-
       </section>
 
-      {/* VALUES */}
+      {/* Vision & Mission Split Cards */}
+      <section className="py-20 relative bg-charcoal/20">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8">
+          
+          {/* Vision card */}
+          <div className="bg-charcoal/40 border border-white/5 p-10 rounded-2xl text-right space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-projector-orange/10 text-projector-orange flex items-center justify-center">
+              <Eye className="w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold font-cairo text-white">رؤيتنا</h3>
+            <p className="text-gray-400 font-tajawal text-base leading-relaxed">
+              أن نصبح المركز الثقافي المستقل الأول للسينما البديلة والصناعة الإبداعية في سوريا، والوجهة الأساسية لإحياء التراث السينمائي وبناء مجتمع نقدي واعٍ.
+            </p>
+          </div>
 
-      <section className="py-32 bg-black/20">
+          {/* Mission card */}
+          <div className="bg-charcoal/40 border border-white/5 p-10 rounded-2xl text-right space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-projector-warm/10 text-projector-warm flex items-center justify-center">
+              <Target className="w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold font-cairo text-white">رسالتنا</h3>
+            <p className="text-gray-400 font-tajawal text-base leading-relaxed">
+              تقديم تجارب عرض سينمائية استثنائية وعالية الجودة، ودعم السينمائيين المستقلين محلياً عبر توفير بيئة تفاعلية تجمع بين العرض، النقاش، والتعليم الثقافي المستدام.
+            </p>
+          </div>
 
-        <div className="max-w-7xl mx-auto px-6">
+        </div>
+      </section>
 
-          <div className="text-center mb-20">
-
-            <span className="text-gold font-black">
-              رؤيتنا
-            </span>
-
-            <h2 className="text-5xl font-black mt-4">
-              فلسفة دمشق فيلم صالون
-            </h2>
-
+      {/* Core Values Asymmetric Grid */}
+      <section className="py-24 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <span className="text-projector-orange font-cairo font-bold text-sm tracking-wider">ركائزنا الأساسية</span>
+            <h2 className="text-3xl md:text-5xl font-black font-cairo text-white">القيم الجوهرية للصالون</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-
-            {values.map((item, index) => {
-
-              const Icon = item.icon
-
+            {values.map((val, idx) => {
+              const Icon = val.icon
               return (
-
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className="group bg-charcoal/80 border border-white/10 rounded-[2rem] p-10 hover:border-gold/40 transition-all duration-500"
+                <div
+                  key={val.title}
+                  className="bg-charcoal/30 border border-white/5 hover:border-projector-orange/20 p-8 rounded-2xl text-right space-y-4 transition duration-300"
                 >
-
-                  <div className="w-20 h-20 rounded-3xl bg-gold/10 flex items-center justify-center mb-8 group-hover:scale-110 transition">
-
-                    <Icon className="w-10 h-10 text-gold" />
-
+                  <div className="w-12 h-12 rounded-lg bg-projector-orange/10 text-projector-orange flex items-center justify-center">
+                    <Icon className="w-5.5 h-5.5" />
                   </div>
-
-                  <h3 className="text-3xl font-black mb-6">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-gray-400 text-lg leading-9">
-                    {item.desc}
+                  <h3 className="text-xl font-bold font-cairo text-white">{val.title}</h3>
+                  <p className="text-gray-400 font-tajawal text-sm md:text-base leading-relaxed">
+                    {val.desc}
                   </p>
-
-                </motion.div>
-
+                </div>
               )
             })}
-
           </div>
 
         </div>
-
-      </section>
-
-      {/* STATS */}
-
-      <section className="py-28">
-
-        <div className="max-w-6xl mx-auto px-6">
-
-          <div className="grid md:grid-cols-4 gap-10 text-center">
-
-            {[
-              ['+120', 'عرض سينمائي'],
-              ['+40', 'ورشة تدريبية'],
-              ['+3000', 'زائر سنوي'],
-              ['+25', 'فنان ومخرج'],
-            ].map((item) => (
-
-              <div key={item[1]}>
-
-                <h3 className="text-6xl font-black text-gold mb-4">
-                  {item[0]}
-                </h3>
-
-                <p className="text-gray-400 text-lg">
-                  {item[1]}
-                </p>
-
-              </div>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* FINAL SECTION */}
-
-      <section className="relative py-40 overflow-hidden border-t border-white/10">
-
-        <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-orange-500/5 blur-3xl" />
-
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-
-          <Film className="w-20 h-20 text-gold mx-auto mb-10" />
-
-          <h2 className="text-6xl font-black leading-tight mb-10">
-
-            السينما ليست
-            <span className="block text-gold">
-              مجرد مشاهدة
-            </span>
-
-          </h2>
-
-          <p className="text-gray-300 text-2xl leading-[2] max-w-3xl mx-auto">
-
-            بل مساحة للحوار والتأمل وصناعة الوعي الثقافي والبصري.
-
-          </p>
-
-        </div>
-
       </section>
 
     </div>
-
   )
 }

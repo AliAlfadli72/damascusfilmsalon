@@ -4,11 +4,55 @@
 
 body {
   font-family: 'Tajawal', sans-serif;
-  background: #0D1B2A;
+  background: #090E14;
   color: white;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: #D96A0E;
+  background: #E06B00;
   color: white;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090E14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2436;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E06B00;
+}
+
+/* Cinematic project-glow animations & classes */
+.projector-glow {
+  filter: drop-shadow(0 0 15px rgba(224, 107, 0, 0.4));
+}
+
+.projector-glow-lg {
+  filter: drop-shadow(0 0 35px rgba(224, 107, 0, 0.6));
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.text-stroke-amber {
+  -webkit-text-stroke: 1px rgba(224, 107, 0, 0.3);
 }

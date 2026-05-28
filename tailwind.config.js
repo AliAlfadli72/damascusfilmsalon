@@ -3,11 +3,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0D1B2A',
-        gold: '#D96A0E',
-        charcoal: '#1B263B',
+        primary: '#090E14',
+        midnight: '#090E14',
+        gold: '#E06B00',
+        'projector-orange': '#E06B00',
+        'projector-warm': '#E07A5F',
+        charcoal: '#111823',
       },
       fontFamily: {
+        cairo: ['Cairo', 'sans-serif'],
+        tajawal: ['Tajawal', 'sans-serif'],
         arabic: ['Tajawal', 'sans-serif'],
       },
     },

@@ -1,252 +1,176 @@
-import { motion } from 'framer-motion'
-import {
-  Film,
-  Star,
-  Clock3,
-  Globe,
-} from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Film, Calendar, Clock, ArrowLeft } from 'lucide-react'
 
 export default function Archive() {
+  const [filter, setFilter] = useState('الكل')
 
   const films = [
     {
+      id: 1,
       title: 'ذاكرة الضوء',
-      category: 'فيلم وثائقي',
+      category: 'وثائقي',
       year: '2024',
       duration: '95 دقيقة',
-      image:
-        'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop',
+      desc: 'توثيق بصري حميمي للفنانين المستقلين في دمشق وحول كيفية بقاء الضوء والفن حياً.',
+      image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop',
     },
     {
+      id: 2,
       title: 'المدينة الصامتة',
       category: 'سينما مستقلة',
       year: '2023',
       duration: '110 دقيقة',
-      image:
-        'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2070&auto=format&fit=crop',
+      desc: 'رحلة فلسفية صامتة داخل أحياء دمشق القديمة ترصد التفاصيل المعمارية والإنسانية غير المرئية.',
+      image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2070&auto=format&fit=crop',
     },
     {
+      id: 3,
       title: 'ما بعد الظل',
-      category: 'دراما بصرية',
+      category: 'دراما',
       year: '2022',
       duration: '88 دقيقة',
-      image:
-        'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=2070&auto=format&fit=crop',
+      desc: 'فيلم تجريبي درامي يتناول انعكاسات الذاكرة الشخصية على جدران البيوت الدمشقية العتيقة.',
+      image: 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=2070&auto=format&fit=crop',
     },
     {
+      id: 4,
       title: 'دمشق الأخيرة',
-      category: 'سينما عربية',
+      category: 'وثائقي',
       year: '2025',
       duration: '102 دقيقة',
-      image:
-        'https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=2070&auto=format&fit=crop',
+      desc: 'تحقيق وثائقي يبحث في تحولات الصالات السينمائية القديمة بدمشق ومصير تراثها الثقافي.',
+      image: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=2070&auto=format&fit=crop',
     },
   ]
 
+  const categories = ['الكل', 'سينما مستقلة', 'وثائقي', 'دراما']
+
+  const filteredFilms = filter === 'الكل'
+    ? films
+    : films.filter(f => f.category === filter)
+
   return (
+    <div className="overflow-hidden bg-midnight min-h-screen pt-28 pb-20">
+      
+      {/* Glows */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-projector-orange/10 blur-[130px] rounded-full pointer-events-none animate-pulse-glow" />
 
-    <div className="overflow-hidden">
+      {/* Header section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-right space-y-6 mb-16">
+        <span className="text-projector-orange font-cairo font-bold text-sm tracking-wider uppercase">
+          الأرشيف الرقمي
+        </span>
+        <h1 className="text-4xl md:text-6xl font-black font-cairo leading-tight text-white">
+          أرشيف السينما المستقلة
+        </h1>
+        <p className="text-gray-400 font-tajawal text-base md:text-lg leading-relaxed max-w-3xl">
+          مكتبة بصرية توثيقية تضم روائع السينما البديلة والأفلام المعروضة سابقاً في الصالون، مساهمة منا في حفظ الذاكرة السينمائية السورية.
+        </p>
+      </div>
 
-      {/* HERO */}
+      {/* Filter Tabs */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 mb-16 flex flex-wrap gap-3 justify-end">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            className={`px-6 py-2.5 rounded-full font-tajawal font-bold text-sm transition-all duration-300 ${
+              filter === cat
+                ? 'bg-projector-orange text-white shadow-[0_4px_15px_rgba(224,107,0,0.3)]'
+                : 'bg-white/5 border border-white/5 text-gray-400 hover:text-white hover:border-white/10'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-
-        {/* BG */}
-
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-110"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
-
-        <div className="absolute inset-0 bg-black/80" />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-primary" />
-
-        {/* GLOW */}
-
-        <div className="absolute top-10 right-10 w-96 h-96 bg-gold/10 blur-3xl rounded-full" />
-
-        {/* CONTENT */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 max-w-5xl mx-auto px-6 text-center"
-        >
-
-          <span className="text-gold font-black text-lg">
-            أرشيف بصري
-          </span>
-
-          <h1 className="text-6xl md:text-8xl font-black leading-tight mt-6">
-
-            أرشيف
-            <span className="block text-gold">
-              السينما المستقلة
-            </span>
-
-          </h1>
-
-          <p className="max-w-3xl mx-auto mt-10 text-xl text-gray-300 leading-[2.2]">
-
-            مساحة لحفظ واستعراض الأفلام والتجارب البصرية
-            التي صنعت ذاكرة دمشق السينمائية الحديثة.
-
-          </p>
-
-        </motion.div>
-
-      </section>
-
-      {/* FILTERS */}
-
-      <section className="py-12 border-b border-white/10 bg-black/20 backdrop-blur-xl">
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="flex flex-wrap justify-center gap-4">
-
-            {[
-              'الكل',
-              'سينما مستقلة',
-              'وثائقي',
-              'دراما',
-              'تجريبي',
-              'عربي',
-            ].map((item) => (
-
-              <button
-                key={item}
-                className="px-6 py-3 rounded-full border border-white/10 hover:border-gold/40 hover:bg-gold/10 transition-all duration-300"
-              >
-                {item}
-              </button>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* FILMS */}
-
-      <section className="py-32">
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-
-            {films.map((film, index) => (
-
+      {/* Movie poster aspect grid */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {filteredFilms.map((film, index) => (
               <motion.div
-                key={film.title}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15 }}
-                viewport={{ once: true }}
-                className="group"
+                key={film.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative bg-charcoal/40 border border-white/5 rounded-2xl overflow-hidden shadow-2xl transition duration-500 hover:border-projector-orange/30"
               >
-
-                {/* IMAGE */}
-
-                <div className="relative overflow-hidden rounded-[2rem] h-[550px]">
-
+                
+                {/* 2:3 Cinematic Poster ratio container */}
+                <div className="aspect-[2/3] w-full overflow-hidden relative">
                   <img
                     src={film.image}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    alt={film.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-
-                  {/* OVERLAY */}
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-
-                  {/* CATEGORY */}
-
-                  <div className="absolute top-5 right-5 px-4 py-2 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-sm font-bold">
-
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  
+                  {/* Category overlay label */}
+                  <span className="absolute top-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 text-white text-xs font-bold font-tajawal px-3 py-1 rounded-full">
                     {film.category}
+                  </span>
+
+                  {/* Dynamic hovering details panel */}
+                  <div className="absolute inset-0 bg-midnight/90 p-8 flex flex-col justify-between text-right opacity-0 group-hover:opacity-100 transition-all duration-300 border border-projector-orange/20">
+                    
+                    <div className="space-y-4">
+                      <span className="text-projector-orange text-xs font-bold font-tajawal tracking-wide uppercase">
+                        {film.category}
+                      </span>
+                      <h3 className="text-2xl font-black font-cairo text-white leading-tight">
+                        {film.title}
+                      </h3>
+                      <p className="text-gray-400 font-tajawal text-xs md:text-sm leading-relaxed">
+                        {film.desc}
+                      </p>
+                    </div>
+
+                    <div className="space-y-4">
+                      {/* Meta information */}
+                      <div className="flex flex-col gap-2 text-xs text-gray-300 font-tajawal">
+                        <div className="flex items-center gap-2 justify-end">
+                          <span>{film.duration}</span>
+                          <Clock className="w-3.5 h-3.5 text-projector-orange" />
+                        </div>
+                        <div className="flex items-center gap-2 justify-end">
+                          <span>{film.year}</span>
+                          <Calendar className="w-3.5 h-3.5 text-projector-orange" />
+                        </div>
+                      </div>
+
+                      <button className="w-full bg-projector-orange hover:bg-projector-orange/95 text-white font-cairo font-bold text-xs py-3 rounded-xl transition duration-300">
+                        طلب عرض خاص
+                      </button>
+                    </div>
 
                   </div>
 
-                  {/* CONTENT */}
-
-                  <div className="absolute bottom-0 p-8 w-full">
-
-                    <h2 className="text-3xl font-black mb-4 leading-tight">
+                  {/* Standard Static content representation */}
+                  <div className="absolute bottom-0 p-6 w-full text-right pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+                    <h3 className="text-xl font-bold font-cairo text-white">
                       {film.title}
-                    </h2>
-
-                    <div className="flex items-center gap-5 text-gray-300 text-sm mb-5">
-
-                      <div className="flex items-center gap-2">
-                        <Clock3 className="w-4 h-4" />
-                        {film.duration}
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <Globe className="w-4 h-4" />
-                        {film.year}
-                      </div>
-
+                    </h3>
+                    <div className="flex gap-4 text-xs text-gray-400 font-tajawal mt-2 justify-end">
+                      <span>{film.year}</span>
+                      <span>{film.duration}</span>
                     </div>
-
-                    <button className="w-full bg-gold hover:bg-orange-500 transition-all duration-300 py-4 rounded-2xl font-black">
-
-                      مشاهدة التفاصيل
-
-                    </button>
-
                   </div>
 
                 </div>
 
               </motion.div>
-
             ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* QUOTE */}
-
-      <section className="relative py-40 border-t border-white/10 overflow-hidden">
-
-        <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-orange-500/5 blur-3xl" />
-
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-
-          <Film className="w-20 h-20 text-gold mx-auto mb-10" />
-
-          <h2 className="text-5xl md:text-7xl font-black leading-tight mb-12">
-
-            السينما تحفظ
-            <span className="block text-gold">
-              ذاكرة المدن
-            </span>
-
-          </h2>
-
-          <p className="text-gray-300 text-2xl leading-[2] max-w-3xl mx-auto">
-
-            وكل فيلم هو محاولة جديدة لفهم الإنسان والحياة
-            والمدينة من زاوية مختلفة.
-
-          </p>
-
-        </div>
-
-      </section>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
     </div>
-
   )
 }

@@ -1,295 +1,158 @@
-import { motion } from 'framer-motion'
-
-import {
-  Calendar,
-  Clock3,
-  MapPin,
-  ArrowLeft,
-  Ticket,
-} from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { Calendar as CalendarIcon, Clock, MapPin, Ticket, ArrowLeft } from 'lucide-react'
 
 export default function Events() {
+  const [filter, setFilter] = useState('الكل')
 
   const events = [
     {
-      title: 'ورشة كتابة السيناريو السينمائي',
+      id: 1,
+      title: 'ورشة كتابة السيناريو السينمائي المستقل',
       type: 'ورشة تدريبية',
       date: '12 يونيو 2026',
       time: '06:00 مساءً',
       location: 'غاليري زوايا - دمشق',
-      image:
-        'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2070&auto=format&fit=crop',
+      desc: 'ورشة مكثفة لتعليم أساسيات بناء الحبكة، تطوير الشخصيات، وصياغة الحوار بأسلوب سينمائي احترافي موجه للسينما المستقلة.',
+      image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=2070&auto=format&fit=crop',
     },
-
     {
-      title: 'عرض فيلم وثائقي مستقل',
+      id: 2,
+      title: 'عرض فيلم وثائقي سوري مستقل ونقاش',
       type: 'عرض سينمائي',
       date: '18 يونيو 2026',
       time: '08:30 مساءً',
-      location: 'بيت ثقافي - دمشق',
-      image:
-        'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop',
+      location: 'بيت ثقافي تراثي - دمشق القديمة',
+      desc: 'عرض سينمائي خاص لفيلم وثائقي سوري مستقل حائز على جوائز عالمية، يليه نقاش حميمي ومفتوح مع صناع العمل والجمهور.',
+      image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop',
     },
-
     {
-      title: 'جلسة تحليل ونقد بصري',
-      type: 'نقاش مفتوح',
+      id: 3,
+      title: 'جلسة نقدية: تفكيك الذاكرة السينمائية',
+      type: 'جلسات نقد',
       date: '24 يونيو 2026',
       time: '07:00 مساءً',
-      location: 'صالون دمشق السينمائي',
-      image:
-        'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2070&auto=format&fit=crop',
+      location: 'صالون دمشق السينمائي - القاعة الرئيسية',
+      desc: 'جلسة نقاش وحوار نقدي حول السينما العربية الكلاسيكية وكيفية تأثيرها وصياغتها لذاكرة الهوية المجتمعية والمدن.',
+      image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2070&auto=format&fit=crop',
     },
   ]
 
+  const categories = ['الكل', 'عرض سينمائي', 'ورشة تدريبية', 'جلسات نقد']
+
+  const filteredEvents = filter === 'الكل'
+    ? events
+    : events.filter(e => e.type === filter)
+
   return (
-
-    <div className="overflow-hidden">
-
-      {/* HERO */}
-
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-
-        {/* BACKGROUND */}
-
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-110"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
-
-        <div className="absolute inset-0 bg-black/80" />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-primary/50 to-primary" />
-
-        {/* GLOW */}
-
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gold/10 blur-3xl rounded-full" />
-
-        {/* CONTENT */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 max-w-5xl mx-auto px-6 text-center"
-        >
-
-          <span className="text-gold font-black text-lg">
-            الفعاليات والورش
-          </span>
-
-          <h1 className="text-6xl md:text-8xl font-black leading-tight mt-6">
-
-            حيث تتحول
-            <span className="block text-gold">
-              السينما إلى تجربة
-            </span>
-
-          </h1>
-
-          <p className="max-w-3xl mx-auto mt-10 text-xl text-gray-300 leading-[2.2]">
-
-            عروض سينمائية، ورش أكاديمية، ونقاشات بصرية
-            تخلق مساحة جديدة للحوار الفني والثقافي.
-
-          </p>
-
-        </motion.div>
-
-      </section>
-
-      {/* FILTERS */}
-
-      <section className="py-10 border-b border-white/10 bg-black/20 backdrop-blur-xl">
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="flex flex-wrap justify-center gap-4">
-
-            {[
-              'الكل',
-              'عروض سينمائية',
-              'ورش تدريبية',
-              'جلسات نقد',
-              'فعاليات خاصة',
-            ].map((item) => (
-
-              <button
-                key={item}
-                className="px-6 py-3 rounded-full border border-white/10 hover:border-gold/40 hover:bg-gold/10 transition-all duration-300"
-              >
-                {item}
-              </button>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* EVENTS */}
-
-      <section className="py-32">
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="space-y-16">
-
-            {events.map((event, index) => (
-
-              <motion.div
-                key={event.title}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-
-                <div className="grid lg:grid-cols-2 gap-0 bg-charcoal/80 border border-white/10 rounded-[3rem] overflow-hidden hover:border-gold/30 transition-all duration-500">
-
-                  {/* IMAGE */}
-
-                  <div className="relative h-[500px] overflow-hidden">
-
-                    <img
-                      src={event.image}
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-                    <div className="absolute top-6 right-6 px-5 py-2 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-sm font-black">
-
-                      {event.type}
-
-                    </div>
-
-                  </div>
-
-                  {/* CONTENT */}
-
-                  <div className="p-12 flex flex-col justify-center">
-
-                    <h2 className="text-5xl font-black leading-tight mb-8">
-
-                      {event.title}
-
-                    </h2>
-
-                    <p className="text-gray-400 text-lg leading-[2] mb-10">
-
-                      فعالية ثقافية معاصرة تهدف لخلق مساحة حقيقية
-                      للنقاش البصري والتفاعل بين الجمهور وصنّاع الأفلام.
-
-                    </p>
-
-                    {/* META */}
-
-                    <div className="space-y-5 mb-12">
-
-                      <div className="flex items-center gap-4 text-gray-300">
-
-                        <Calendar className="w-5 h-5 text-gold" />
-
-                        <span>{event.date}</span>
-
-                      </div>
-
-                      <div className="flex items-center gap-4 text-gray-300">
-
-                        <Clock3 className="w-5 h-5 text-gold" />
-
-                        <span>{event.time}</span>
-
-                      </div>
-
-                      <div className="flex items-center gap-4 text-gray-300">
-
-                        <MapPin className="w-5 h-5 text-gold" />
-
-                        <span>{event.location}</span>
-
-                      </div>
-
-                    </div>
-
-                    {/* BUTTONS */}
-
-                    <div className="flex flex-wrap gap-5">
-
-                      <button className="group/btn bg-gold hover:bg-orange-500 transition-all duration-300 px-8 py-4 rounded-full font-black text-lg flex items-center gap-3">
-
-                        احجز مقعدك
-
-                        <Ticket className="w-5 h-5" />
-
-                      </button>
-
-                      <button className="border border-white/10 hover:border-gold/40 transition-all duration-300 px-8 py-4 rounded-full font-bold flex items-center gap-3">
-
-                        اقرأ التفاصيل
-
-                        <ArrowLeft className="w-5 h-5" />
-
-                      </button>
-
-                    </div>
-
-                  </div>
-
+    <div className="overflow-hidden bg-midnight min-h-screen pt-28 pb-20">
+      
+      {/* Glow */}
+      <div className="absolute top-0 right-10 w-96 h-96 bg-projector-orange/10 blur-[130px] rounded-full pointer-events-none animate-pulse-glow" />
+
+      {/* Header section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-right space-y-6 mb-16">
+        <span className="text-projector-orange font-cairo font-bold text-sm tracking-wider uppercase">
+          أجندة الصالون
+        </span>
+        <h1 className="text-4xl md:text-6xl font-black font-cairo leading-tight text-white">
+          الفعاليات والورشات السينمائية
+        </h1>
+        <p className="text-gray-400 font-tajawal text-base md:text-lg leading-relaxed max-w-3xl">
+          اكتشف عروضنا الأسبوعية وورش العمل التدريبية والندوات النقدية. احجز تذكرتك مقدماً لضمان مقعدك في صالة العرض.
+        </p>
+      </div>
+
+      {/* Filter Tabs */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 mb-16 flex flex-wrap gap-3 justify-end">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            className={`px-6 py-2.5 rounded-full font-tajawal font-bold text-sm transition-all duration-300 ${
+              filter === cat
+                ? 'bg-projector-orange text-white shadow-[0_4px_15px_rgba(224,107,0,0.3)]'
+                : 'bg-white/5 border border-white/5 text-gray-400 hover:text-white hover:border-white/10'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Staggered Event Cards */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 space-y-12">
+        <AnimatePresence mode="wait">
+          {filteredEvents.map((event, index) => (
+            <motion.div
+              key={event.id}
+              initial={{ opacity: 0, y: 55 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group bg-charcoal/40 border border-white/5 rounded-3xl overflow-hidden shadow-xl hover:border-projector-orange/20 transition-all duration-500"
+            >
+              <div className="grid lg:grid-cols-12 gap-0 items-center">
+                
+                {/* Visual Image container (5 columns) */}
+                <div className="lg:col-span-5 h-[320px] lg:h-[450px] relative overflow-hidden">
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-midnight via-transparent to-black/20" />
+                  
+                  {/* Category Pill */}
+                  <span className="absolute top-4 right-4 bg-projector-orange text-white text-xs font-bold font-tajawal px-4 py-1.5 rounded-full">
+                    {event.type}
+                  </span>
                 </div>
 
-              </motion.div>
+                {/* Content description container (7 columns) */}
+                <div className="lg:col-span-7 p-8 md:p-12 text-right space-y-6">
+                  <h2 className="text-2xl md:text-4xl font-black font-cairo text-white leading-tight">
+                    {event.title}
+                  </h2>
+                  <p className="text-gray-400 font-tajawal text-sm md:text-base leading-relaxed">
+                    {event.desc}
+                  </p>
 
-            ))}
+                  {/* Date, Time, Location metadata */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-gray-300 font-tajawal text-xs md:text-sm">
+                    <div className="flex items-center gap-2.5 bg-white/5 border border-white/5 p-3.5 rounded-xl justify-end">
+                      <span>{event.date}</span>
+                      <CalendarIcon className="w-4 h-4 text-projector-orange" />
+                    </div>
+                    <div className="flex items-center gap-2.5 bg-white/5 border border-white/5 p-3.5 rounded-xl justify-end">
+                      <span>{event.time}</span>
+                      <Clock className="w-4 h-4 text-projector-orange" />
+                    </div>
+                    <div className="flex items-center gap-2.5 bg-white/5 border border-white/5 p-3.5 rounded-xl justify-end">
+                      <span className="text-xs truncate">{event.location}</span>
+                      <MapPin className="w-4 h-4 text-projector-orange" />
+                    </div>
+                  </div>
 
-          </div>
+                  {/* Buttons */}
+                  <div className="pt-4 flex flex-wrap gap-4 justify-start lg:justify-end">
+                    <Link
+                      to="/booking"
+                      className="group/btn bg-gradient-to-l from-projector-orange to-projector-warm hover:from-projector-warm hover:to-projector-orange text-white px-7 py-3.5 rounded-xl font-cairo font-bold text-sm transition-all duration-300 shadow-md flex items-center gap-2"
+                    >
+                      <Ticket className="w-4 h-4" />
+                      <span>احجز مقعدك</span>
+                    </Link>
+                  </div>
+                </div>
 
-        </div>
-
-      </section>
-
-      {/* FINAL CTA */}
-
-      <section className="relative py-40 overflow-hidden border-t border-white/10">
-
-        <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-orange-500/5 blur-3xl" />
-
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-
-          <h2 className="text-6xl md:text-7xl font-black leading-tight mb-10">
-
-            كل عرض هو
-            <span className="block text-gold">
-              بداية حوار جديد
-            </span>
-
-          </h2>
-
-          <p className="text-gray-300 text-2xl leading-[2] max-w-3xl mx-auto mb-14">
-
-            نخلق مساحة مستقلة تحتفي بالسينما والتجريب
-            والوعي الثقافي الحديث.
-
-          </p>
-
-          <button className="bg-gold hover:bg-orange-500 transition-all duration-300 px-12 py-5 rounded-full text-xl font-black shadow-2xl shadow-gold/20 hover:scale-105">
-
-            اكتشف جميع الفعاليات
-
-          </button>
-
-        </div>
-
-      </section>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
 
     </div>
-
   )
 }

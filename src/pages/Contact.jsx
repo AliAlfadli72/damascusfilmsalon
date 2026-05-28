@@ -1,275 +1,196 @@
 import { motion } from 'framer-motion'
-
-import {
-  Mail,
-  Instagram,
-  MapPin,
-  Phone,
-  ArrowLeft,
-} from 'lucide-react'
+import { Mail, Instagram, MapPin, Phone, ArrowLeft, Facebook } from 'lucide-react'
+import contactMap from '../assets/contact_map.png'
 
 export default function Contact() {
+  const contactData = {
+    location: "دمشق، سوريا - المنطقة الثقافية التراثية",
+    email: "info@damascusfilmsalon.com",
+    phone: "+963 11 XXXXXXX",
+    socials: {
+      instagram: "@DamascusFilmSalon",
+      facebook: "/DamascusFilmSalon"
+    }
+  }
 
   return (
+    <div className="overflow-hidden bg-midnight min-h-screen pt-28 pb-20">
+      
+      {/* Ambient glows */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-projector-orange/10 blur-[130px] rounded-full pointer-events-none animate-pulse-glow" />
 
-    <div className="overflow-hidden">
+      {/* Header section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-right space-y-6 mb-16">
+        <span className="text-projector-orange font-cairo font-bold text-sm tracking-wider uppercase">
+          قنوات التواصل
+        </span>
+        <h1 className="text-4xl md:text-6xl font-black font-cairo leading-tight text-white">
+          تواصل معنا ونمي الحوار
+        </h1>
+        <p className="text-gray-400 font-tajawal text-base md:text-lg leading-relaxed max-w-3xl">
+          سواء كنت صانع أفلام، ناقداً، أو عاشقاً للسينما البديلة، يسعدنا سماع صوتك ومقترحاتك لبناء مساحة تفاعلية مستدامة.
+        </p>
+      </div>
 
-      {/* HERO */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        
+        {/* Asymmetrical 2-Column Split: Form (Left) & Info Cards + Map (Right) */}
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Premium Contact Form (7 columns) */}
+          <div className="lg:col-span-7 bg-charcoal/30 border border-white/5 p-8 md:p-12 rounded-3xl text-right space-y-8 order-2 lg:order-1">
+            <h2 className="text-2xl font-bold font-cairo text-white">أرسل رسالتك للصالون</h2>
+            
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label className="text-gray-400 font-tajawal text-xs md:text-sm">الاسم الكامل</label>
+                  <input
+                    type="text"
+                    className="bg-black/30 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-tajawal text-sm focus:border-projector-orange/40 text-right w-full text-white"
+                    placeholder="الاسم الثلاثي"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-gray-400 font-tajawal text-xs md:text-sm">رقم الهاتف</label>
+                  <input
+                    type="tel"
+                    className="bg-black/30 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-tajawal text-sm focus:border-projector-orange/40 text-right w-full text-white"
+                    placeholder="+963 9xx xxx xxx"
+                  />
+                </div>
+              </div>
 
-      <section className="relative min-h-[65vh] flex items-center justify-center overflow-hidden">
-
-        {/* BG */}
-
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-110"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
-
-        <div className="absolute inset-0 bg-black/80" />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-primary" />
-
-        {/* GLOW */}
-
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gold/10 blur-3xl rounded-full" />
-
-        {/* CONTENT */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 max-w-5xl mx-auto px-6 text-center"
-        >
-
-          <span className="text-gold font-black text-lg">
-            تواصل معنا
-          </span>
-
-          <h1 className="text-6xl md:text-8xl font-black leading-tight mt-6">
-
-            لنبدأ
-            <span className="block text-gold">
-              حواراً جديداً
-            </span>
-
-          </h1>
-
-          <p className="max-w-3xl mx-auto mt-10 text-xl text-gray-300 leading-[2.2]">
-
-            نحن دائماً منفتحون على التعاون، النقاشات،
-            المبادرات الثقافية، والتجارب السينمائية الجديدة.
-
-          </p>
-
-        </motion.div>
-
-      </section>
-
-      {/* CONTACT SECTION */}
-
-      <section className="py-32">
-
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-
-            {/* FORM */}
-
-            <motion.div
-              initial={{ opacity: 0, x: 80 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-charcoal/80 backdrop-blur-xl border border-white/10 rounded-[3rem] p-10 md:p-14"
-            >
-
-              <h2 className="text-4xl font-black mb-10">
-                أرسل رسالتك
-              </h2>
-
-              <div className="space-y-6">
-
+              <div className="flex flex-col gap-2">
+                <label className="text-gray-400 font-tajawal text-xs md:text-sm">البريد الإلكتروني</label>
                 <input
-                  placeholder="الاسم الكامل"
-                  className="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none focus:border-gold/40 transition-all duration-300"
+                  type="email"
+                  className="bg-black/30 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-tajawal text-sm focus:border-projector-orange/40 text-right w-full text-white"
+                  placeholder="name@example.com"
                 />
+              </div>
 
+              <div className="flex flex-col gap-2">
+                <label className="text-gray-400 font-tajawal text-xs md:text-sm">موضوع الرسالة</label>
                 <input
-                  placeholder="البريد الإلكتروني"
-                  className="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none focus:border-gold/40 transition-all duration-300"
+                  type="text"
+                  className="bg-black/30 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-tajawal text-sm focus:border-projector-orange/40 text-right w-full text-white"
+                  placeholder="مثال: شراكة ثقافية، ورشة عمل، استفسار"
                 />
+              </div>
 
-                <input
-                  placeholder="عنوان الرسالة"
-                  className="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none focus:border-gold/40 transition-all duration-300"
-                />
-
+              <div className="flex flex-col gap-2">
+                <label className="text-gray-400 font-tajawal text-xs md:text-sm">محتوى الرسالة</label>
                 <textarea
-                  rows="7"
-                  placeholder="اكتب رسالتك هنا..."
-                  className="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none resize-none focus:border-gold/40 transition-all duration-300"
+                  rows="6"
+                  className="bg-black/30 border border-white/10 rounded-xl px-4 py-3.5 outline-none font-tajawal text-sm focus:border-projector-orange/40 text-right w-full text-white resize-none"
+                  placeholder="اكتب تفاصيل مقترحك أو استفسارك هنا..."
                 />
+              </div>
 
-                <button className="group bg-gold hover:bg-orange-500 transition-all duration-300 px-10 py-5 rounded-full font-black text-lg flex items-center gap-3">
-
-                  إرسال الرسالة
-
-                  <ArrowLeft className="group-hover:-translate-x-1 transition" />
-
+              <div className="pt-4 flex justify-end">
+                <button className="group flex items-center gap-2 bg-gradient-to-l from-projector-orange to-projector-warm hover:from-projector-warm hover:to-projector-orange text-white px-8 py-4 rounded-xl font-cairo font-bold text-sm transition-all duration-300 shadow-md hover:shadow-projector-orange/20 hover:-translate-y-0.5">
+                  <span>إرسال الرسالة</span>
+                  <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
                 </button>
+              </div>
+            </form>
+          </div>
 
+          {/* Right Column: Info Cards & Local Damascus Map (5 columns) */}
+          <div className="lg:col-span-5 space-y-6 text-right order-1 lg:order-2">
+            
+            {/* Info Cards */}
+            <div className="bg-charcoal/30 border border-white/5 p-6 rounded-2xl space-y-6">
+              
+              {/* Location card */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-projector-orange/10 text-projector-orange flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold font-cairo text-white text-sm">موقعنا في دمشق</h4>
+                  <p className="text-xs text-gray-400 font-tajawal mt-1">{contactData.location}</p>
+                </div>
               </div>
 
-            </motion.div>
-
-            {/* INFO */}
-
-            <motion.div
-              initial={{ opacity: 0, x: -80 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-
-              <div>
-
-                <span className="text-gold font-black">
-                  معلومات التواصل
-                </span>
-
-                <h2 className="text-5xl font-black leading-tight mt-6 mb-8">
-
-                  نرحب بجميع
-                  <span className="block text-gold">
-                    الأفكار والمبادرات
-                  </span>
-
-                </h2>
-
-                <p className="text-gray-400 text-xl leading-[2]">
-
-                  سواء كنت صانع أفلام، ناقداً، طالباً،
-                  أو مهتماً بالسينما المستقلة، نحن هنا لبناء
-                  مساحة حقيقية للحوار والتجربة الفنية.
-
-                </p>
-
+              {/* Email card */}
+              <div className="flex items-start gap-4 border-t border-white/5 pt-4">
+                <div className="w-10 h-10 rounded-xl bg-projector-orange/10 text-projector-orange flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold font-cairo text-white text-sm">البريد الإلكتروني المباشر</h4>
+                  <a href={`mailto:${contactData.email}`} className="text-xs text-gray-400 hover:text-projector-orange font-tajawal mt-1 block transition">
+                    {contactData.email}
+                  </a>
+                </div>
               </div>
 
-              {/* CONTACT ITEMS */}
+              {/* Phone card */}
+              <div className="flex items-start gap-4 border-t border-white/5 pt-4">
+                <div className="w-10 h-10 rounded-xl bg-projector-orange/10 text-projector-orange flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold font-cairo text-white text-sm">رقم الهاتف</h4>
+                  <a href={`tel:${contactData.phone}`} className="text-xs text-gray-400 hover:text-projector-orange font-tajawal mt-1 block transition">
+                    {contactData.phone}
+                  </a>
+                </div>
+              </div>
 
-              <div className="space-y-6">
-
-                {[
-                  {
-                    icon: Mail,
-                    title: 'البريد الإلكتروني',
-                    value: 'info@damascusfilmsalon.com',
-                  },
-
-                  {
-                    icon: Instagram,
-                    title: 'إنستغرام',
-                    value: '@damascus.film.salon',
-                  },
-
-                  {
-                    icon: Phone,
-                    title: 'رقم التواصل',
-                    value: '+963 9XX XXX XXX',
-                  },
-
-                  {
-                    icon: MapPin,
-                    title: 'الموقع',
-                    value: 'دمشق - سوريا',
-                  },
-                ].map((item) => {
-
-                  const Icon = item.icon
-
-                  return (
-
-                    <div
-                      key={item.title}
-                      className="group bg-charcoal/60 border border-white/10 rounded-[2rem] p-8 hover:border-gold/40 transition-all duration-500"
+              {/* Social Channels card */}
+              <div className="flex items-start gap-4 border-t border-white/5 pt-4">
+                <div>
+                  <h4 className="font-bold font-cairo text-white text-sm">قنوات التواصل الاجتماعي</h4>
+                  <div className="flex gap-6 mt-3">
+                    <a
+                      href={`https://instagram.com/${contactData.socials.instagram.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gray-400 hover:text-projector-orange font-tajawal flex items-center gap-1.5 transition"
                     >
-
-                      <div className="flex items-start gap-5">
-
-                        <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition">
-
-                          <Icon className="w-8 h-8 text-gold" />
-
-                        </div>
-
-                        <div>
-
-                          <h3 className="text-2xl font-black mb-3">
-                            {item.title}
-                          </h3>
-
-                          <p className="text-gray-400 text-lg">
-                            {item.value}
-                          </p>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  )
-                })}
-
+                      <span>إنستغرام</span>
+                      <Instagram className="w-3.5 h-3.5" />
+                    </a>
+                    <a
+                      href={`https://facebook.com/${contactData.socials.facebook}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gray-400 hover:text-projector-orange font-tajawal flex items-center gap-1.5 transition"
+                    >
+                      <span>فيسبوك</span>
+                      <Facebook className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
               </div>
 
-            </motion.div>
+            </div>
+
+            {/* Artistic Map Mockup (Using the Damascus Lantern alleyway image) */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <img
+                src={contactMap}
+                alt="Damascus historic alleyway showing location area"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-black/20" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-charcoal/90 backdrop-blur-md border border-projector-orange/40 px-5 py-3 rounded-2xl text-center shadow-2xl projector-glow">
+                  <p className="font-bold font-cairo text-xs text-white">المنطقة الثقافية التراثية</p>
+                  <p className="text-[10px] text-projector-orange font-tajawal mt-1">صالون دمشق السينمائي</p>
+                </div>
+              </div>
+            </div>
 
           </div>
 
         </div>
 
-      </section>
-
-      {/* FINAL CTA */}
-
-      <section className="relative py-40 border-t border-white/10 overflow-hidden">
-
-        <div className="absolute inset-0 bg-gradient-to-r from-gold/10 to-orange-500/5 blur-3xl" />
-
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-
-          <h2 className="text-6xl md:text-7xl font-black leading-tight mb-10">
-
-            السينما تبدأ
-            <span className="block text-gold">
-              من الحوار
-            </span>
-
-          </h2>
-
-          <p className="text-gray-300 text-2xl leading-[2] max-w-3xl mx-auto mb-14">
-
-            وكل رسالة قد تكون بداية لفكرة،
-            مشروع، أو تجربة بصرية جديدة.
-
-          </p>
-
-          <button className="bg-gold hover:bg-orange-500 transition-all duration-300 px-12 py-5 rounded-full text-xl font-black shadow-2xl shadow-gold/20 hover:scale-105">
-
-            انضم إلى المجتمع السينمائي
-
-          </button>
-
-        </div>
-
-      </section>
+      </div>
 
     </div>
-
   )
 }

@@ -1,217 +1,129 @@
 import { useState, useEffect } from 'react'
-
 import { Link, useLocation } from 'react-router-dom'
-
-import {
-  Menu,
-  X,
-  Ticket,
-} from 'lucide-react'
+import { Menu, X, Ticket } from 'lucide-react'
 
 export default function Navbar() {
-
   const [mobileOpen, setMobileOpen] = useState(false)
-
   const [scrolled, setScrolled] = useState(false)
-
   const location = useLocation()
 
   useEffect(() => {
-
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      setScrolled(window.scrollY > 50)
     }
-
     window.addEventListener('scroll', handleScroll)
-
     return () => window.removeEventListener('scroll', handleScroll)
-
   }, [])
 
   const links = [
-    {
-      name: 'الرئيسية',
-      path: '/',
-    },
-    {
-      name: 'من نحن',
-      path: '/about',
-    },
-    {
-      name: 'الفعاليات',
-      path: '/events',
-    },
-    {
-      name: 'أرشيف السينما',
-      path: '/archive',
-    },
-    {
-      name: 'تواصل معنا',
-      path: '/contact',
-    },
+    { name: 'الرئيسية', path: '/' },
+    { name: 'من نحن', path: '/about' },
+    { name: 'الفعاليات', path: '/events' },
+    { name: 'أرشيف السينما', path: '/archive' },
+    { name: 'تواصل معنا', path: '/contact' },
   ]
 
   return (
-
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-black/70 backdrop-blur-2xl border-b border-white/10 shadow-2xl shadow-black/20'
-          : 'bg-transparent'
+          ? 'bg-midnight/80 backdrop-blur-xl border-b border-projector-orange/20 py-4 shadow-xl'
+          : 'bg-transparent py-6 border-b border-transparent'
       }`}
     >
-
-      <div className="max-w-7xl mx-auto px-6">
-
-        <div className="flex items-center justify-between h-24">
-
-          {/* LOGO */}
-
-          <Link
-            to="/"
-            className="group"
-          >
-
-            <h1 className="text-2xl md:text-3xl font-black text-gold tracking-wide group-hover:scale-105 transition">
-
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo Brand */}
+          <Link to="/" className="group flex flex-col items-start focus:outline-none">
+            <h1 className="text-xl md:text-2xl font-black font-cairo tracking-wide text-transparent bg-clip-text bg-gradient-to-l from-projector-orange to-projector-warm transition duration-300 group-hover:scale-[1.02]">
               Damascus Film Salon
-
             </h1>
-
-            <p className="text-xs text-gray-400 mt-1 tracking-[0.3em] uppercase">
-
+            <span className="text-[10px] text-gray-400 font-bold tracking-[0.2em] -mt-1 uppercase">
               صالون دمشق السينمائي
-
-            </p>
-
+            </span>
           </Link>
 
-          {/* DESKTOP NAV */}
-
-          <nav className="hidden lg:flex items-center gap-3">
-
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1">
             {links.map((link) => {
-
               const active = location.pathname === link.path
-
               return (
-
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-5 py-3 rounded-full text-sm font-black transition-all duration-300 ${
+                  className={`relative px-5 py-2.5 font-tajawal font-bold text-sm transition-all duration-300 rounded-full group ${
                     active
-                      ? 'text-gold bg-gold/10'
-                      : 'text-white hover:text-gold hover:bg-white/5'
+                      ? 'text-projector-orange'
+                      : 'text-gray-300 hover:text-white'
                   }`}
                 >
-
-                  {link.name}
-
+                  <span className="relative z-10">{link.name}</span>
+                  {active && (
+                    <span className="absolute inset-0 bg-projector-orange/10 rounded-full border border-projector-orange/30 shadow-[0_0_15px_rgba(224,107,0,0.15)]" />
+                  )}
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-projector-orange transition-all duration-300 group-hover:w-1/2 rounded-full" />
                 </Link>
-
               )
             })}
-
           </nav>
 
-          {/* RIGHT ACTIONS */}
-
+          {/* CTA & Mobile trigger */}
           <div className="flex items-center gap-4">
-
-            {/* BOOK BUTTON */}
-
             <Link
               to="/booking"
-              className="hidden md:flex items-center gap-3 bg-gold hover:bg-orange-500 text-white px-7 py-4 rounded-full font-black transition-all duration-300 shadow-2xl shadow-gold/20 hover:scale-105"
+              className="hidden md:flex items-center gap-2 bg-gradient-to-l from-projector-orange to-projector-warm hover:from-projector-warm hover:to-projector-orange text-white px-6 py-3 rounded-full font-cairo font-bold text-sm transition-all duration-300 shadow-[0_4px_20px_rgba(224,107,0,0.25)] hover:shadow-[0_4px_30px_rgba(224,107,0,0.4)] hover:-translate-y-0.5 active:translate-y-0"
             >
-
-              <Ticket className="w-5 h-5" />
-
-              احجز الآن
-
+              <Ticket className="w-4 h-4" />
+              <span>احجز الآن</span>
             </Link>
-
-            {/* MOBILE BUTTON */}
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-xl"
+              className="lg:hidden w-11 h-11 rounded-xl bg-white/5 border border-white/10 hover:border-projector-orange/30 transition-all duration-300 flex items-center justify-center text-gray-300 hover:text-white"
             >
-
-              {mobileOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-
+              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-
           </div>
-
         </div>
-
       </div>
 
-      {/* MOBILE MENU */}
-
+      {/* Mobile Menu */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          mobileOpen
-            ? 'max-h-[500px] opacity-100'
-            : 'max-h-0 opacity-0'
+        className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+          mobileOpen ? 'max-h-[400px] opacity-100 mt-2' : 'max-h-0 opacity-0'
         }`}
       >
-
-        <div className="mx-6 mb-6 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6">
-
-          <div className="flex flex-col gap-3">
-
+        <div className="mx-6 bg-midnight/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-5 shadow-2xl">
+          <div className="flex flex-col gap-2">
             {links.map((link) => {
-
               const active = location.pathname === link.path
-
               return (
-
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`px-5 py-4 rounded-2xl font-bold transition-all duration-300 ${
+                  className={`px-4 py-3 rounded-xl font-tajawal font-bold text-sm transition-all duration-300 ${
                     active
-                      ? 'bg-gold/10 text-gold'
-                      : 'hover:bg-white/5 text-white'
+                      ? 'bg-projector-orange/10 text-projector-orange border-r-2 border-projector-orange'
+                      : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-
                   {link.name}
-
                 </Link>
-
               )
             })}
-
-            {/* MOBILE BOOK BUTTON */}
-
             <Link
               to="/booking"
               onClick={() => setMobileOpen(false)}
-              className="mt-4 bg-gold hover:bg-orange-500 transition-all duration-300 px-6 py-5 rounded-2xl font-black flex items-center justify-center gap-3"
+              className="mt-3 bg-gradient-to-l from-projector-orange to-projector-warm text-white px-4 py-3.5 rounded-xl font-cairo font-black text-sm flex items-center justify-center gap-2 shadow-lg"
             >
-
-              <Ticket className="w-5 h-5" />
-
-              احجز الآن
-
+              <Ticket className="w-4 h-4" />
+              <span>احجز الآن</span>
             </Link>
-
           </div>
-
         </div>
-
       </div>
-
     </header>
-
   )
 }

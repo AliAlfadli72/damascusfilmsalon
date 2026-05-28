@@ -1,329 +1,166 @@
 import { Link } from 'react-router-dom'
-
-import {
-  Instagram,
-  Facebook,
-  Mail,
-  MapPin,
-  Ticket,
-  ArrowLeft,
-} from 'lucide-react'
+import { Instagram, Facebook, Mail, MapPin, Phone, Ticket, ArrowLeft } from 'lucide-react'
 
 export default function Footer() {
-
   const links = [
-    {
-      name: 'الرئيسية',
-      path: '/',
-    },
-    {
-      name: 'من نحن',
-      path: '/about',
-    },
-    {
-      name: 'الفعاليات',
-      path: '/events',
-    },
-    {
-      name: 'أرشيف السينما',
-      path: '/archive',
-    },
-    {
-      name: 'تواصل معنا',
-      path: '/contact',
-    },
+    { name: 'الرئيسية', path: '/' },
+    { name: 'من نحن', path: '/about' },
+    { name: 'الفعاليات', path: '/events' },
+    { name: 'أرشيف السينما', path: '/archive' },
+    { name: 'تواصل معنا', path: '/contact' },
   ]
 
+  const contactData = {
+    location: "دمشق، سوريا - المنطقة الثقافية التراثية",
+    email: "info@damascusfilmsalon.com",
+    phone: "+963 11 XXXXXXX",
+    socials: {
+      instagram: "@DamascusFilmSalon",
+      facebook: "/DamascusFilmSalon"
+    }
+  }
+
   return (
+    <footer className="relative mt-24 border-t border-white/10 bg-gradient-to-b from-midnight to-black overflow-hidden">
+      
+      {/* Ambient background glows */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-projector-orange/5 blur-[120px] rounded-full pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-projector-warm/5 blur-[150px] rounded-full pointer-events-none" />
 
-    <footer className="relative mt-32 overflow-hidden border-t border-white/10 bg-black/40 backdrop-blur-2xl">
-
-      {/* GLOW */}
-
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gold/10 blur-3xl rounded-full" />
-
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-orange-500/10 blur-3xl rounded-full" />
-
-      {/* CTA */}
-
-      <section className="relative border-b border-white/10">
-
-        <div className="max-w-7xl mx-auto px-6 py-24">
-
-          <div className="bg-gradient-to-br from-gold/10 to-orange-500/5 border border-gold/20 rounded-[3rem] p-12 md:p-16 overflow-hidden relative">
-
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_40%)]" />
-
-            <div className="relative z-10 grid lg:grid-cols-[1fr_auto] gap-10 items-center">
-
-              {/* TEXT */}
-
-              <div>
-
-                <span className="text-gold font-black text-lg">
-                  ابدأ رحلتك السينمائية
-                </span>
-
-                <h2 className="text-5xl md:text-7xl font-black leading-tight mt-6 mb-8">
-
-                  حيث تبدأ
-                  <span className="block text-gold">
-                    الحكاية الحقيقية
-                  </span>
-
-                </h2>
-
-                <p className="max-w-3xl text-xl text-gray-300 leading-[2]">
-
-                  انضم إلى مجتمع دمشق فيلم صالون
-                  واكتشف تجربة سينمائية مستقلة
-                  تجمع بين الفن والحوار والثقافة البصرية.
-
-                </p>
-
-              </div>
-
-              {/* BUTTON */}
-
+      {/* Pre-footer Call to Action Card */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-12">
+        <div className="relative bg-gradient-to-br from-charcoal to-midnight/90 border border-white/5 rounded-3xl p-8 md:p-12 overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-projector-orange/10 blur-[80px] rounded-full" />
+          
+          <div className="relative z-10 grid lg:grid-cols-[1.5fr_1fr] gap-10 items-center">
+            <div>
+              <span className="text-projector-orange font-cairo font-bold text-sm tracking-wider uppercase">
+                بوابتك للسينما البديلة
+              </span>
+              <h2 className="text-3xl md:text-5xl font-black font-cairo leading-tight mt-3 mb-6">
+                السينما كما يجب <span className="text-transparent bg-clip-text bg-gradient-to-l from-projector-orange to-projector-warm">أن تُشاهد</span>
+              </h2>
+              <p className="text-gray-400 font-tajawal text-base md:text-lg leading-relaxed max-w-2xl">
+                انضم إلى ملتقى عشاق الفن السابع في دمشق. اختبر عروضاً غير تجارية تفتح نوافذ للفكر والحوار السينمائي الممتع.
+              </p>
+            </div>
+            
+            <div className="flex lg:justify-end">
               <Link
                 to="/booking"
-                className="group bg-gold hover:bg-orange-500 transition-all duration-300 px-10 py-6 rounded-2xl font-black text-xl flex items-center justify-center gap-4 shadow-2xl shadow-gold/20 hover:scale-105"
+                className="group flex items-center gap-3 bg-gradient-to-l from-projector-orange to-projector-warm hover:from-projector-warm hover:to-projector-orange text-white px-8 py-4.5 rounded-2xl font-cairo font-bold text-base transition-all duration-300 shadow-lg hover:shadow-projector-orange/20 hover:-translate-y-1"
               >
-
-                <Ticket className="w-6 h-6" />
-
-                احجز الآن
-
-                <ArrowLeft className="group-hover:-translate-x-1 transition" />
-
+                <Ticket className="w-5 h-5" />
+                <span>احجز تذكرتك للفعالية القادمة</span>
+                <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
               </Link>
-
             </div>
-
           </div>
+        </div>
+      </div>
 
+      {/* Main Footer Links */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 border-b border-white/5">
+        
+        {/* Brand section */}
+        <div className="lg:col-span-4 space-y-6">
+          <h2 className="text-3xl font-black font-cairo text-transparent bg-clip-text bg-gradient-to-l from-projector-orange to-projector-warm leading-tight">
+            Damascus<br />Film Salon
+          </h2>
+          <p className="text-gray-400 font-tajawal text-sm leading-relaxed max-w-sm">
+            مساحة ثقافية مستقلة وملتقى فكري يجمع صناع الأفلام، النقاد، وعشاق الفن السابع في تجربة بصرية مغايرة للمألوف في قلب دمشق.
+          </p>
+          <div className="flex items-center gap-3">
+            <a
+              href={`https://instagram.com/${contactData.socials.instagram.replace('@', '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:border-projector-orange/40 hover:bg-projector-orange/10 text-gray-400 hover:text-projector-orange transition duration-300 flex items-center justify-center"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href={`https://facebook.com/${contactData.socials.facebook}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:border-projector-orange/40 hover:bg-projector-orange/10 text-gray-400 hover:text-projector-orange transition duration-300 flex items-center justify-center"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
-      </section>
-
-      {/* MAIN FOOTER */}
-
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
-
-        <div className="grid lg:grid-cols-[1.3fr_1fr_1fr_1fr] gap-16">
-
-          {/* BRAND */}
-
-          <div>
-
-            <h2 className="text-4xl font-black text-gold leading-tight mb-6">
-
-              Damascus
-              <span className="block">
-                Film Salon
-              </span>
-
-            </h2>
-
-            <p className="text-gray-400 text-lg leading-[2] mb-10">
-
-              منصة ثقافية مستقلة تهدف لإحياء السينما البديلة
-              وصناعة حراك بصري معاصر داخل قلب دمشق.
-
-            </p>
-
-            {/* SOCIAL */}
-
-            <div className="flex items-center gap-4">
-
-              {[
-                {
-                  icon: Instagram,
-                  href: '#',
-                },
-
-                {
-                  icon: Facebook,
-                  href: '#',
-                },
-
-                {
-                  icon: Mail,
-                  href: '#',
-                },
-              ].map((item, index) => {
-
-                const Icon = item.icon
-
-                return (
-
-                  <a
-                    key={index}
-                    href={item.href}
-                    className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/40 hover:bg-gold/10 transition-all duration-300 flex items-center justify-center"
-                  >
-
-                    <Icon className="w-5 h-5" />
-
-                  </a>
-
-                )
-              })}
-
-            </div>
-
-          </div>
-
-          {/* LINKS */}
-
-          <div>
-
-            <h3 className="text-2xl font-black mb-8">
-              الصفحات
-            </h3>
-
-            <div className="space-y-5">
-
-              {links.map((link) => (
-
+        {/* Sitemap links */}
+        <div className="lg:col-span-2 space-y-6">
+          <h3 className="text-lg font-bold font-cairo text-white">الصفحات</h3>
+          <ul className="space-y-3.5">
+            {links.map((link) => (
+              <li key={link.path}>
                 <Link
-                  key={link.path}
                   to={link.path}
-                  className="block text-gray-400 hover:text-gold transition-all duration-300 hover:translate-x-1"
+                  className="text-gray-400 hover:text-projector-orange font-tajawal text-sm transition duration-200 block hover:-translate-x-1"
                 >
-
                   {link.name}
-
                 </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-              ))}
+        {/* Contact info */}
+        <div className="lg:col-span-3 space-y-6">
+          <h3 className="text-lg font-bold font-cairo text-white">تواصل معنا</h3>
+          <ul className="space-y-4">
+            <li className="flex items-start gap-3">
+              <MapPin className="w-4.5 h-4.5 text-projector-orange shrink-0 mt-1" />
+              <span className="text-gray-400 font-tajawal text-sm leading-relaxed">{contactData.location}</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail className="w-4.5 h-4.5 text-projector-orange shrink-0" />
+              <a href={`mailto:${contactData.email}`} className="text-gray-400 hover:text-projector-orange font-tajawal text-sm transition duration-200">
+                {contactData.email}
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <Phone className="w-4.5 h-4.5 text-projector-orange shrink-0" />
+              <a href={`tel:${contactData.phone}`} className="text-gray-400 hover:text-projector-orange font-tajawal text-sm transition duration-200">
+                {contactData.phone}
+              </a>
+            </li>
+          </ul>
+        </div>
 
-            </div>
-
-          </div>
-
-          {/* CONTACT */}
-
-          <div>
-
-            <h3 className="text-2xl font-black mb-8">
-              تواصل معنا
-            </h3>
-
-            <div className="space-y-6">
-
-              <div className="flex items-start gap-4">
-
-                <Mail className="w-5 h-5 text-gold mt-1" />
-
-                <div>
-
-                  <p className="text-gray-400">
-                    info@damascusfilmsalon.com
-                  </p>
-
-                </div>
-
-              </div>
-
-              <div className="flex items-start gap-4">
-
-                <Instagram className="w-5 h-5 text-gold mt-1" />
-
-                <div>
-
-                  <p className="text-gray-400">
-                    @damascus.film.salon
-                  </p>
-
-                </div>
-
-              </div>
-
-              <div className="flex items-start gap-4">
-
-                <MapPin className="w-5 h-5 text-gold mt-1" />
-
-                <div>
-
-                  <p className="text-gray-400">
-                    دمشق - سوريا
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* NEWSLETTER */}
-
-          <div>
-
-            <h3 className="text-2xl font-black mb-8">
-              النشرة البريدية
-            </h3>
-
-            <p className="text-gray-400 leading-8 mb-8">
-
-              اشترك ليصلك جديد العروض
-              والورش والفعاليات القادمة.
-
-            </p>
-
-            <div className="space-y-4">
-
-              <input
-                type="email"
-                placeholder="البريد الإلكتروني"
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-gold/40 transition-all duration-300"
-              />
-
-              <button className="w-full bg-gold hover:bg-orange-500 transition-all duration-300 py-4 rounded-2xl font-black">
-
-                اشتراك
-
-              </button>
-
-            </div>
-
-          </div>
-
+        {/* Newsletter subscription */}
+        <div className="lg:col-span-3 space-y-6">
+          <h3 className="text-lg font-bold font-cairo text-white">النشرة البريدية</h3>
+          <p className="text-gray-400 font-tajawal text-sm leading-relaxed">
+            اشترك لتلقي تفاصيل عروضنا الأسبوعية وورش العمل والندوات القادمة مباشرة.
+          </p>
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-2.5">
+            <input
+              type="email"
+              placeholder="البريد الإلكتروني"
+              className="bg-black/40 border border-white/10 rounded-xl px-4 py-3 outline-none font-tajawal text-sm text-white placeholder-gray-500 focus:border-projector-orange/40 transition duration-300 w-full"
+            />
+            <button className="w-full bg-projector-orange hover:bg-projector-orange/90 text-white font-cairo font-bold text-sm py-3 rounded-xl transition duration-300 shadow-md">
+              اشترك الآن
+            </button>
+          </form>
         </div>
 
       </div>
 
-      {/* BOTTOM */}
-
-      <div className="relative border-t border-white/10">
-
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
-
-          <p className="text-gray-500 text-sm">
-
-            © 2026 Damascus Film Salon — جميع الحقوق محفوظة
-
-          </p>
-
-          <div className="flex items-center gap-8 text-sm text-gray-500">
-
-            <button className="hover:text-gold transition">
-              سياسة الخصوصية
-            </button>
-
-            <button className="hover:text-gold transition">
-              الشروط والأحكام
-            </button>
-
-          </div>
-
+      {/* Bottom Footer Details */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-gray-500 font-tajawal text-xs">
+          © {new Date().getFullYear()} صالون دمشق السينمائي. جميع الحقوق محفوظة.
+        </p>
+        <div className="flex gap-6 text-xs text-gray-500 font-tajawal">
+          <a href="#" className="hover:text-projector-orange transition">سياسة الخصوصية</a>
+          <a href="#" className="hover:text-projector-orange transition">الشروط والأحكام</a>
         </div>
-
       </div>
 
     </footer>
-
   )
 }
