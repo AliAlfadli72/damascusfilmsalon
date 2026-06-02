@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Play, Film, Users, Clapperboard, Calendar, Clock, MapPin } from 'lucide-react'
-import heroCinematic from '../assets/hero_cinematic.png'
+import heroCinematic from '../assets/hero_cinematic.webp'
 
 export default function Home() {
   const features = [
@@ -222,6 +222,7 @@ export default function Home() {
                 <img
                   src={featuredEvent.image}
                   alt={featuredEvent.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -319,6 +320,7 @@ export default function Home() {
                   <img
                     src={film.image}
                     alt={film.title}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/50 to-transparent" />

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Eye, Target, Sparkles, ShieldCheck } from 'lucide-react'
-import aboutStory from '../assets/about_story.png'
+import aboutStory from '../assets/about_story.webp'
 
 export default function About() {
   const values = [
@@ -85,6 +85,7 @@ export default function About() {
                 <img
                   src={aboutStory}
                   alt="Vintage cinema reels and projection beam"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-black/20" />

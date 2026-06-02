@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Mail, Instagram, MapPin, Phone, ArrowLeft, Facebook } from 'lucide-react'
-import contactMap from '../assets/contact_map.png'
+import contactMap from '../assets/contact_map.webp'
 
 export default function Contact() {
   const contactData = {
@@ -174,6 +174,7 @@ export default function Contact() {
               <img
                 src={contactMap}
                 alt="Damascus historic alleyway showing location area"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-black/20" />
